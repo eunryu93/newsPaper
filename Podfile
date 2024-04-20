@@ -6,7 +6,10 @@ target 'NewsPaper' do
   use_frameworks!
 
   # Pods for NewsPaper
-
+  pod 'EDToolKit'
+  pod 'Alamofire'
+  pod 'RealmSwift'
+  
   target 'NewsPaperTests' do
     inherit! :search_paths
     # Pods for testing

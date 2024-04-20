@@ -1,3 +1,36 @@
-PODFILE CHECKSUM: 855a6fbc39eddfeca1d5497b86210b070641178c
+PODS:
+  - Alamofire (5.9.1)
+  - EDToolKit (5.0.0):
+    - SDWebImage
+  - Realm (10.49.1):
+    - Realm/Headers (= 10.49.1)
+  - Realm/Headers (10.49.1)
+  - RealmSwift (10.49.1):
+    - Realm (= 10.49.1)
+  - SDWebImage (5.19.1):
+    - SDWebImage/Core (= 5.19.1)
+  - SDWebImage/Core (5.19.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - EDToolKit
+  - RealmSwift
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - EDToolKit
+    - Realm
+    - RealmSwift
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  Alamofire: f36a35757af4587d8e4f4bfa223ad10be2422b8c
+  EDToolKit: 0fae0221696ad70eb7aa828d493a48cdb1bec41f
+  Realm: 1fab4a224fd7a294eca142a0efe8b54546290fbf
+  RealmSwift: 7c3a9c001161eb01b96b171ad965a9c498b962b0
+  SDWebImage: 40b0b4053e36c660a764958bff99eed16610acbb
+
+PODFILE CHECKSUM: ea98b4b95a7eb0d1e32ee7a201aa3a642108c973
 
 COCOAPODS: 1.15.2
