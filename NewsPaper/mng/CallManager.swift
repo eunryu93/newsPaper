@@ -7,6 +7,7 @@
 
 import UIKit
 import Alamofire
+import Network
 
 protocol CallDelegate {
     func resultAction(info: ResponseInfo)
@@ -41,13 +42,79 @@ class CallManager {
     func call(reqInfo: RequestInfo) {
         self.initUrlAndKey()
         var requestSession: DataRequest?
-        var resultInfo: ResponseInfo?
+        var nativeErr: NativeErrorType?
         
-        var callUrl = ""
-        if let main = self.mainURL, let callUrl = URL(string: main + reqInfo.path.rawValue) {
-            
+        // 1] URL 정상여부 확인
+        var callUrl: URL?
+        if let main = self.mainURL, let checkUrl = URL(string: main + reqInfo.path.rawValue) {
+            callUrl = checkUrl
         } else {
+            nativeErr = NativeErrorType.urlError
+        }
+        
+        // 2] 인터넷 연결여부 확인
+        
+    }
+    
+    private func failAction(nativeErr: NativeErrorType?, resInfo: ResponseInfo?) {
+        if let del = delegate {
+            var resData: ResponseInfo = ResponseInfo(status: "no")
+            if let nativeE = nativeErr {
+                resData.code = nativeE.info().code
+                resData.message = nativeE.info().msg
+            } else if let errInfo = resInfo {
+                resData = errInfo
+            }
             
+            del.resultAction(info: resData)
+        }
+    }
+}
+
+final class NetworkCheck{
+    static let shared = NetworkCheck()
+    private let queue = DispatchQueue.global()
+    private let monitor: NWPathMonitor
+    public private(set) var isConnected: Bool = false
+    public private(set) var connectionType: ConnectionType = .unknown
+    
+    // 연결 타입
+    enum ConnectionType{
+        case wifi
+        case cellular
+        case ethernet
+        case unknown
+    }
+    
+    // monotior 초기화
+    private init(){
+        monitor = NWPathMonitor()
+    }
+    
+    // Network Monitoring 시작
+    public func startMonitoring(){
+        monitor.start(queue: queue)
+        monitor.pathUpdateHandler = { [weak self] path in
+            self?.isConnected = path.status == .satisfied
+            self?.getConnectionType(path)
+        }
+    }
+    
+    // Network Monitoring 종료
+    public func stopMonitoring(){
+        monitor.cancel()
+    }
+    
+    // Network 연결 타입가져오기.
+    private func getConnectionType(_ path: NWPath){
+        if path.usesInterfaceType(.wifi){
+            connectionType = .wifi
+        } else if path.usesInterfaceType(.cellular){
+            connectionType = .cellular
+        } else if path.usesInterfaceType(.wiredEthernet){
+            connectionType = .ethernet
+        } else {
+            connectionType = .unknown
         }
     }
 }
