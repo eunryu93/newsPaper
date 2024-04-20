@@ -89,6 +89,37 @@ class CallManager {
         }
         
         let session = getSession()
+        let req = session.request(callUrl!, method: reqInfo.method)
+        req.response { resData in
+            self.initUrlAndKey()
+            
+            switch resData.result {
+            case .success(let httpData):
+                var resInfo: ResponseInfo?
+                do {
+                    if let checkResData = httpData {
+                        let convertInfo = try JSONDecoder().decode(ResponseInfo.self, from: checkResData)
+                        resInfo = convertInfo
+                    }
+                } catch {
+                    resInfo = nil
+                }
+                
+                if resInfo != nil {
+                    if let del = self.delegate {
+                        del.resultAction(info: resInfo!)
+                    }
+                } else {
+                    let emptyErr = NativeErrorType.dataEmpty
+                    self.failAction(nativeErr: emptyErr, resInfo: nil)
+                }
+                break
+            case .failure(let error):
+                let httpErr = NativeErrorType.httpError
+                self.failAction(nativeErr: nil, resInfo: ResponseInfo(status: "no", code: httpErr.info().code, message: httpErr.info().msg))
+                break
+            }
+        }
     }
     
     private func failAction(nativeErr: NativeErrorType?, resInfo: ResponseInfo?) {

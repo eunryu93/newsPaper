@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct NewsItem {
+struct NewsItem: Codable {
     var title: String
     var author: String
     var description: String

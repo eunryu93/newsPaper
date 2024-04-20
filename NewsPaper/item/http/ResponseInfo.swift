@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct ResponseInfo {
+struct ResponseInfo: Codable {
     var status: String
     
     var totalResults: String?
