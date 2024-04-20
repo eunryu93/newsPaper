@@ -41,19 +41,54 @@ class CallManager {
     
     func call(reqInfo: RequestInfo) {
         self.initUrlAndKey()
-        var requestSession: DataRequest?
         var nativeErr: NativeErrorType?
         
         // 1] URL 정상여부 확인
         var callUrl: URL?
-        if let main = self.mainURL, let checkUrl = URL(string: main + reqInfo.path.rawValue) {
-            callUrl = checkUrl
-        } else {
+        if let main = self.mainURL {
+            let bodyUrl = main + reqInfo.path.rawValue
+            
+            var component = URLComponents(string: bodyUrl)
+            if let comp = component, reqInfo.param.count > 0 {
+                var compInfo = comp
+                let paramKey = reqInfo.param.allKeys
+                var queryArray: [URLQueryItem] = []
+                
+                for item in paramKey {
+                    if let keyString = item as? String, let value = reqInfo.param[item] as? String {
+                        queryArray.append(URLQueryItem(name: keyString, value: value))
+                    }
+                }
+                
+                if queryArray.count > 0 {
+                    compInfo.queryItems = queryArray
+                }
+                
+                callUrl = compInfo.url
+            }
+            
+        }
+        
+        if callUrl == nil {
             nativeErr = NativeErrorType.urlError
         }
         
         // 2] 인터넷 연결여부 확인
+        if !NetworkCheck.shared.isConnected {
+            nativeErr = NativeErrorType.notConnectIt
+        }
         
+        // 3] 호출 method 가 get이 아니면 오류, 과제가 get으로 호출하므로 나머지 오류처리
+        if reqInfo.method != .get {
+            nativeErr = NativeErrorType.callMethodErr
+        }
+        
+        if nativeErr != nil {
+            self.failAction(nativeErr: nativeErr, resInfo: nil)
+            return
+        }
+        
+        let session = getSession()
     }
     
     private func failAction(nativeErr: NativeErrorType?, resInfo: ResponseInfo?) {
