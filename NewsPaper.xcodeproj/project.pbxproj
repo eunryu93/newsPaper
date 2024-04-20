@@ -111,7 +111,6 @@
 				83B48BD9CAAF428D0CBA90D4 /* Pods-NewsPaperTests.debug.xcconfig */,
 				5189189F66BDA130D261D3F7 /* Pods-NewsPaperTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -140,13 +139,9 @@
 		933B437A2BD3F6440099E4F8 /* NewsPaper */ = {
 			isa = PBXGroup;
 			children = (
-				933B437B2BD3F6440099E4F8 /* AppDelegate.swift */,
-				933B437D2BD3F6450099E4F8 /* SceneDelegate.swift */,
 				933B437F2BD3F6450099E4F8 /* ViewController.swift */,
 				933B43812BD3F6450099E4F8 /* Main.storyboard */,
-				933B43842BD3F6460099E4F8 /* Assets.xcassets */,
-				933B43862BD3F6460099E4F8 /* LaunchScreen.storyboard */,
-				933B43892BD3F6460099E4F8 /* Info.plist */,
+				933B43AB2BD3F70A0099E4F8 /* SupportFiles */,
 			);
 			path = NewsPaper;
 			sourceTree = "<group>";
@@ -166,6 +161,18 @@
 				933B439E2BD3F6460099E4F8 /* NewsPaperUITestsLaunchTests.swift */,
 			);
 			path = NewsPaperUITests;
+			sourceTree = "<group>";
+		};
+		933B43AB2BD3F70A0099E4F8 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				933B437B2BD3F6440099E4F8 /* AppDelegate.swift */,
+				933B437D2BD3F6450099E4F8 /* SceneDelegate.swift */,
+				933B43842BD3F6460099E4F8 /* Assets.xcassets */,
+				933B43862BD3F6460099E4F8 /* LaunchScreen.storyboard */,
+				933B43892BD3F6460099E4F8 /* Info.plist */,
+			);
+			path = SupportFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -557,8 +564,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SEFJ4VR6PY;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NewsPaper/Info.plist;
+				INFOPLIST_FILE = NewsPaper/SupportFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -586,8 +594,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SEFJ4VR6PY;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NewsPaper/Info.plist;
+				INFOPLIST_FILE = NewsPaper/SupportFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -615,6 +624,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SEFJ4VR6PY;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				MARKETING_VERSION = 1.0;
@@ -636,6 +646,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SEFJ4VR6PY;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				MARKETING_VERSION = 1.0;
@@ -656,6 +667,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SEFJ4VR6PY;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.devhouse.NewsPaperUITests;
@@ -675,6 +687,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SEFJ4VR6PY;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.devhouse.NewsPaperUITests;
