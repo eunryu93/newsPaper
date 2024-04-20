@@ -26,6 +26,7 @@
 		933B43BF2BD3FD800099E4F8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933B43BE2BD3FD800099E4F8 /* Extensions.swift */; };
 		933B43C12BD3FEB20099E4F8 /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933B43C02BD3FEB20099E4F8 /* LogManager.swift */; };
 		933B43C32BD3FEC20099E4F8 /* ToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933B43C22BD3FEC20099E4F8 /* ToolManager.swift */; };
+		93782EA72BD41179006C75D6 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93782EA62BD41179006C75D6 /* DataManager.swift */; };
 		B868BCEE12A5C687608D27E9 /* Pods_NewsPaper_NewsPaperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BEA99D295F4DDBF0FF8C6B /* Pods_NewsPaper_NewsPaperUITests.framework */; };
 		BFF70AC03B3EC7FF75616393 /* Pods_NewsPaper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9A0C0FC95B39B35C6ECB3F /* Pods_NewsPaper.framework */; };
 		F1A07CFD3F4CA6EFDB8025FE /* Pods_NewsPaperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F22943B372EE46BB924808 /* Pods_NewsPaperTests.framework */; };
@@ -78,6 +79,7 @@
 		933B43BE2BD3FD800099E4F8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		933B43C02BD3FEB20099E4F8 /* LogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
 		933B43C22BD3FEC20099E4F8 /* ToolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolManager.swift; sourceTree = "<group>"; };
+		93782EA62BD41179006C75D6 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		C47905EDBDBE6A0AC12D6783 /* Pods-NewsPaper-NewsPaperUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsPaper-NewsPaperUITests.debug.xcconfig"; path = "Target Support Files/Pods-NewsPaper-NewsPaperUITests/Pods-NewsPaper-NewsPaperUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E2203714441EA4BDA6F9CF9D /* Pods-NewsPaper-NewsPaperUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsPaper-NewsPaperUITests.release.xcconfig"; path = "Target Support Files/Pods-NewsPaper-NewsPaperUITests/Pods-NewsPaper-NewsPaperUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E9226CA7B6CA0820B1A2EC73 /* Pods-NewsPaper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsPaper.release.xcconfig"; path = "Target Support Files/Pods-NewsPaper/Pods-NewsPaper.release.xcconfig"; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				933B43BE2BD3FD800099E4F8 /* Extensions.swift */,
 				933B43C02BD3FEB20099E4F8 /* LogManager.swift */,
 				933B43C22BD3FEC20099E4F8 /* ToolManager.swift */,
+				93782EA62BD41179006C75D6 /* DataManager.swift */,
 			);
 			path = mng;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				933B43C12BD3FEB20099E4F8 /* LogManager.swift in Sources */,
 				933B43802BD3F6450099E4F8 /* MainView.swift in Sources */,
 				933B43BD2BD3FB560099E4F8 /* NewsItem.swift in Sources */,
+				93782EA72BD41179006C75D6 /* DataManager.swift in Sources */,
 				933B43B92BD3F8A60099E4F8 /* RequestInfo.swift in Sources */,
 				933B437C2BD3F6440099E4F8 /* AppDelegate.swift in Sources */,
 				933B437E2BD3F6450099E4F8 /* SceneDelegate.swift in Sources */,

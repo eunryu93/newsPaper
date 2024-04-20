@@ -30,6 +30,16 @@ class MainView: BaseView,CallDelegate {
     
     func resultAction(info: ResponseInfo) {
         LogManager.basicLog(type: .httpCall, content: "checkStatus : \(info.status)")
+        
+        if info.articles != nil {
+            for item in info.articles! {
+                LogManager.basicLog(type: .httpCall, content: "title : \(item.title)")
+                LogManager.basicLog(type: .httpCall, content: "imgUrl : \(item.urlToImage)")
+                LogManager.basicLog(type: .httpCall, content: "title : \(item.url)")
+                
+                DataManager().setNewsData(newsDatas: info.articles!)
+            }
+        }
     }
 }
 
