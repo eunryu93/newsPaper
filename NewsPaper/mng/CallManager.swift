@@ -40,33 +40,44 @@ class CallManager {
     }
     
     func call(reqInfo: RequestInfo) {
-        self.initUrlAndKey()
+        self.setUrlAndKey()
         var nativeErr: NativeErrorType?
+        var header: Dictionary<String, String> = [:]
         
         // 1] URL 정상여부 확인
         var callUrl: URL?
         if let main = self.mainURL {
             let bodyUrl = main + reqInfo.path.rawValue
             
-            var component = URLComponents(string: bodyUrl)
-            if let comp = component, reqInfo.param.count > 0 {
+            if let comp = URLComponents(string: bodyUrl) {
                 var compInfo = comp
-                let paramKey = reqInfo.param.allKeys
-                var queryArray: [URLQueryItem] = []
-                
-                for item in paramKey {
-                    if let keyString = item as? String, let value = reqInfo.param[item] as? String {
-                        queryArray.append(URLQueryItem(name: keyString, value: value))
+                if reqInfo.param.count > 0 {
+                    let paramKey = reqInfo.param.allKeys
+                    var queryArray: [URLQueryItem] = []
+                    
+                    for item in paramKey {
+                        if let keyString = item as? String, let value = reqInfo.param[item] as? String {
+                            queryArray.append(URLQueryItem(name: keyString, value: value))
+                        }
                     }
-                }
-                
-                if queryArray.count > 0 {
-                    compInfo.queryItems = queryArray
+                    
+                    // api 키 추가
+                    // 헤더 딕셔너리에도 같이 추가
+                    if let apiK = self.apiKey {
+                        queryArray.append(URLQueryItem(name: "key", value: apiK))
+                        
+                        header = [
+                            "x-api-key": apiK
+                        ]
+                    }
+                    
+                    if queryArray.count > 0 {
+                        compInfo.queryItems = queryArray
+                    }
                 }
                 
                 callUrl = compInfo.url
             }
-            
         }
         
         if callUrl == nil {
@@ -89,7 +100,7 @@ class CallManager {
         }
         
         let session = getSession()
-        let req = session.request(callUrl!, method: reqInfo.method)
+        let req = session.request(callUrl!, method: reqInfo.method, headers: HTTPHeaders(header))
         req.response { resData in
             self.initUrlAndKey()
             

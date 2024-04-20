@@ -12,6 +12,8 @@ class BaseView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.initView()
     }
     
     override func didReceiveMemoryWarning() {
