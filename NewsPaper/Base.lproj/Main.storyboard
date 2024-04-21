@@ -45,10 +45,10 @@
             </objects>
             <point key="canvasLocation" x="132" y="-34"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail Web View-->
         <scene sceneID="KpR-mC-b4o">
             <objects>
-                <viewController id="d9u-CU-LP7" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailWebView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d9u-CU-LP7" customClass="DetailWebView" customModule="NewsPaper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tgs-4q-UUT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -69,6 +69,9 @@
                             <constraint firstItem="2OM-e9-bik" firstAttribute="trailing" secondItem="Tsy-B5-jR0" secondAttribute="trailing" id="Z3w-Ua-vSB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="naviBar" destination="Tsy-B5-jR0" id="pnP-hP-ojP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55l-nd-CAt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -106,6 +106,22 @@ class MainView: BaseView, UICollectionViewDelegate, UICollectionViewDataSource, 
         return 5
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = newsArray[indexPath.row]
+        if item as? LocalNewsItem != nil {
+            let alertCT = UIAlertController(title: "알림", message: "인터넷 연결 후 기사보기가 가능합니다, 원만한 통신 환경에서 다시 시도해주세요.", preferredStyle: .alert)
+            alertCT.addAction(UIAlertAction(title: "확인", style: .default))
+            self.present(alertCT, animated: true)
+        } else if let newsItem = item as? NewsItem {
+            let mainST = UIStoryboard(name: "Main", bundle: nil)
+            let detailV = mainST.instantiateViewController(withIdentifier: "DetailWebView") as! DetailWebView
+            detailV.loadUrl = newsItem.url
+            detailV.modalTransitionStyle = .crossDissolve
+            detailV.modalPresentationStyle = .fullScreen
+            self.present(detailV, animated: true)
+        }
+    }
+    
     func calculateCellHeight(data: Any, width: CGFloat) -> CGFloat {
         var height: CGFloat = 0
         if isVertical {
