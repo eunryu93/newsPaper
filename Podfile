@@ -13,6 +13,8 @@ target 'NewsPaper' do
   pod 'RxSwift'
   pod 'RxCocoa'
   
+  pod 'Kingfisher'
+  
   target 'NewsPaperTests' do
     inherit! :search_paths
     # Pods for testing

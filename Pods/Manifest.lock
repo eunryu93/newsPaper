@@ -2,6 +2,7 @@ PODS:
   - Alamofire (5.9.1)
   - EDToolKit (5.0.0):
     - SDWebImage
+  - Kingfisher (7.11.0)
   - Realm (10.49.1):
     - Realm/Headers (= 10.49.1)
   - Realm/Headers (10.49.1)
@@ -20,6 +21,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - EDToolKit
+  - Kingfisher
   - RealmSwift
   - RxCocoa
   - RxSwift
@@ -28,6 +30,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - EDToolKit
+    - Kingfisher
     - Realm
     - RealmSwift
     - RxCocoa
@@ -38,6 +41,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: f36a35757af4587d8e4f4bfa223ad10be2422b8c
   EDToolKit: 0fae0221696ad70eb7aa828d493a48cdb1bec41f
+  Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
   Realm: 1fab4a224fd7a294eca142a0efe8b54546290fbf
   RealmSwift: 7c3a9c001161eb01b96b171ad965a9c498b962b0
   RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
@@ -45,6 +49,6 @@ SPEC CHECKSUMS:
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   SDWebImage: 40b0b4053e36c660a764958bff99eed16610acbb
 
-PODFILE CHECKSUM: e9e9dff8ec6d03dd3978202edfa5018ffec66377
+PODFILE CHECKSUM: de34a33fdc350b0c9c90b81771becf854f9d8c6c
 
 COCOAPODS: 1.15.2

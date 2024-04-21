@@ -8,18 +8,20 @@
 import UIKit
 import RxSwift
 
-class MainView: BaseView, UITableViewDelegate, UITableViewDataSource {
-
-    @IBOutlet weak var contentV: UITableView!
+class MainView: BaseView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    @IBOutlet weak var contentV: UICollectionView!
     
     private var newsVM: NewsViewModel?
     private var newsBag: DisposeBag = DisposeBag()
     private var newsArray: [Any] = []
     
+    private var isVertical: Bool = true
+    
     override func initView() {
         super.initView()
         
-        contentV.register(UINib(nibName: "NewsCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
+        contentV.register(UINib(nibName: "NewsInfoCell", bundle: nil), forCellWithReuseIdentifier: "NewsInfoCell")
         contentV.delegate = self
         contentV.dataSource = self
     }
@@ -40,29 +42,84 @@ class MainView: BaseView, UITableViewDelegate, UITableViewDataSource {
         newsVM!.callNewsApi()
     }
     
-    /** UITableView */
-    func numberOfSections(in tableView: UITableView) -> Int {
+    /** orientation */
+    override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        isVertical = UIDevice.current.orientation.isPortrait
+        
+        DispatchQueue.main.async {
+            self.contentV.reloadData()
+        }
+    }
+    
+    /** CollectionView Delegate */
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return newsArray.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell") as? NewsCell {
-            if self.newsArray.count > 0 {
-                cell.initCell(info: newsArray[indexPath.row])
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewsInfoCell", for: indexPath) as? NewsInfoCell {
+            var cellWidth: CGFloat = 0
+            if isVertical {
+                cellWidth = self.view.frame.width
+            } else {
+                let chkWidth = collectionView.frame.width
+                cellWidth = (chkWidth - 20) / 3
             }
-            
+            cell.initCell(chkVertical: isVertical, width: cellWidth, newsData: newsArray[indexPath.row])
             return cell
         }
         
-        return UITableViewCell()
+        return UICollectionViewCell()
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if isVertical {
+            return CGSize(width: self.view.frame.width, height: self.calculateCellHeight(data: newsArray[indexPath.row], width: self.view.frame.width))
+        }
+        
+        let cellWidth = (collectionView.frame.width - 20) / 3
+        return CGSize(width: cellWidth, height: self.calculateCellHeight(data: newsArray[indexPath.row], width: cellWidth))
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        if isVertical {
+            return 10
+        }
+        
+        return 5
+    }
+    
+    func calculateCellHeight(data: Any, width: CGFloat) -> CGFloat {
+        var height: CGFloat = 0
+        if isVertical {
+            if let data = data as? NewsItem {
+                let chkImg = ToolManager().imgUrlCheck(urlString: data.urlToImage)
+                if chkImg.status {
+                    height = 290
+                } else {
+                    height = 130
+                }
+            }
+        } else {
+            if let data = data as? NewsItem {
+                let chkImg = ToolManager().imgUrlCheck(urlString: data.urlToImage)
+                if chkImg.status {
+                    height = (width / 2) + 140
+                } else {
+                    height = 140
+                }
+            }
+        }
+        
+        return height
     }
 }
-
