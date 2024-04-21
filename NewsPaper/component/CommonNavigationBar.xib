@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SpoqaHanSansNeo-Medium.otf">
+            <string>SpoqaHanSansNeo-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommonNavigationBar" customModule="DearMyFriends" customModuleProvider="target">
+            <connections>
+                <outlet property="leftBtn" destination="OpM-jR-4rj" id="1eY-Nk-Y7M"/>
+                <outlet property="navTitleLabel" destination="9mN-TU-Jde" id="EzP-cC-QUr"/>
+                <outlet property="rightBtn" destination="vpk-Wv-XOg" id="xvo-br-egc"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OpM-jR-4rj">
+                    <rect key="frame" x="16" y="17" width="26" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="26" id="7nj-Sb-tgb"/>
+                        <constraint firstAttribute="height" constant="26" id="UwJ-b5-Ghi"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpk-Wv-XOg">
+                    <rect key="frame" x="333" y="17" width="26" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="26" id="mCW-5X-fbB"/>
+                        <constraint firstAttribute="height" constant="26" id="o5l-Pg-3VQ"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mN-TU-Jde">
+                    <rect key="frame" x="52" y="19.666666666666668" width="271" height="21.000000000000004"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="ZFL-A2-TQK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Medium" family="Spoqa Han Sans Neo" pointSize="16"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vpk-Wv-XOg" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="OVC-sU-3BU"/>
+                <constraint firstItem="vpk-Wv-XOg" firstAttribute="leading" secondItem="9mN-TU-Jde" secondAttribute="trailing" constant="10" id="Usu-jm-jRW"/>
+                <constraint firstItem="9mN-TU-Jde" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cl7-Vt-Ebx"/>
+                <constraint firstItem="OpM-jR-4rj" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="jPr-0d-H2Y"/>
+                <constraint firstItem="OpM-jR-4rj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="lM2-Hl-PVl"/>
+                <constraint firstItem="9mN-TU-Jde" firstAttribute="leading" secondItem="OpM-jR-4rj" secondAttribute="trailing" constant="10" id="v8C-W2-FzN"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vpk-Wv-XOg" secondAttribute="trailing" constant="16" id="xoP-49-7QF"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="138" y="21"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
