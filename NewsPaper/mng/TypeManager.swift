@@ -15,6 +15,18 @@ enum LogType: String {
     case httpCall = "[HttpCall]"
 }
 
+/// 네비게이션 구성타입
+enum NaviType {
+    /// 타이틀만 씀
+    case none
+    /// 타이틀 + 왼쪽 버튼
+    case onlyLeft
+    /// 타이틀 + 오른쪽 버튼
+    case onlyRight
+    /// 전체 사용
+    case all
+}
+
 /// HTTP 결과 타입, 메시지 및 코드 반환함
 enum NativeErrorType {
     /// 불명
