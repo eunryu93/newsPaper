@@ -10,6 +10,9 @@ target 'NewsPaper' do
   pod 'Alamofire'
   pod 'RealmSwift'
   
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  
   target 'NewsPaperTests' do
     inherit! :search_paths
     # Pods for testing
