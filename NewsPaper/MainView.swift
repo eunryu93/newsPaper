@@ -17,6 +17,7 @@ class MainView: BaseView, UICollectionViewDelegate, UICollectionViewDataSource, 
     private var newsArray: [Any] = []
     
     private var isVertical: Bool = true
+    private var clickCnt: Int = 0
     
     override func initView() {
         super.initView()
@@ -36,6 +37,16 @@ class MainView: BaseView, UICollectionViewDelegate, UICollectionViewDataSource, 
                 
                 DispatchQueue.main.async {
                     self.contentV.reloadData()
+                }
+            }
+        }.disposed(by: newsBag)
+        
+        newsVM!.changeReadTagAct.subscribe { itemEle in
+            if let item = itemEle.element {
+                self.newsArray[self.clickCnt] = item
+                
+                DispatchQueue.main.async {
+                    self.contentV.reloadItems(at: [IndexPath(item: self.clickCnt, section: 0)])
                 }
             }
         }.disposed(by: newsBag)
@@ -113,6 +124,10 @@ class MainView: BaseView, UICollectionViewDelegate, UICollectionViewDataSource, 
             alertCT.addAction(UIAlertAction(title: "확인", style: .default))
             self.present(alertCT, animated: true)
         } else if let newsItem = item as? NewsItem {
+            // 읽은 타이틀 저장
+            self.clickCnt = indexPath.row
+            newsVM?.changeReadTag(item: item)
+            
             let mainST = UIStoryboard(name: "Main", bundle: nil)
             let detailV = mainST.instantiateViewController(withIdentifier: "DetailWebView") as! DetailWebView
             detailV.loadUrl = newsItem.url

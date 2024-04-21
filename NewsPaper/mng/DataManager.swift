@@ -25,6 +25,7 @@ class DataManager {
         }
     }
     
+    /** NewsData */
     func readLocalNewsData() -> [LocalNewsItem] {
         var localData: [LocalNewsItem] = []
         if let rm = realmObject {
@@ -61,6 +62,51 @@ class DataManager {
             } catch {
                 
             }
+        }
+    }
+    
+    /** Save Title */
+    func getReadTitles() -> [String] {
+        var readTitles: [String] = []
+        if let rm = realmObject {
+            let getRmData = rm.objects(ReadNewsCheck.self)
+            if !getRmData.isEmpty {
+                for item in getRmData {
+                    readTitles.append(item.readTitle)
+                }
+            }
+        }
+        return readTitles
+    }
+    
+    func addReadTitles(readTitle: String) {
+        var readTag: Bool = false
+        let readTitles = getReadTitles()
+        
+        if readTitles.count > 0 {
+            for title in readTitles {
+                if readTitle.elementsEqual(title) {
+                    readTag = true
+                    break
+                }
+            }
+        }
+        
+        if readTag {
+            return
+        }
+        
+        do {
+            if let rm = realmObject {
+                let inputData = ReadNewsCheck()
+                inputData.readTitle = readTitle
+                
+                try rm.write {
+                    rm.add(inputData)
+                }
+            }
+        } catch {
+            
         }
     }
 }

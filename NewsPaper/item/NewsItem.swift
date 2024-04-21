@@ -15,6 +15,7 @@ struct NewsItem: Codable {
     var publishedAt: String?
     var url: String?
     var urlToImage: String?
+    var readCheck: Bool?
 }
 
 class LocalNewsItem: Object {
@@ -24,6 +25,7 @@ class LocalNewsItem: Object {
     @objc dynamic var publishedAt: String?
     @objc dynamic var url: String?
     @objc dynamic var urlToImage: String?
+    var readCheck: Bool = false
     
     convenience init(data: NewsItem) {
         self.init()

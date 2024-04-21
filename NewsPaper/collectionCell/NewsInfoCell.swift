@@ -23,6 +23,7 @@ class NewsInfoCell: UICollectionViewCell {
         titleLabel.text = ""
         dateLabel.text = ""
         contentLabel.text = ""
+        titleLabel.textColor = .black
     }
     
     func initCell(chkVertical: Bool, width: CGFloat, newsData: Any) {
@@ -46,6 +47,14 @@ class NewsInfoCell: UICollectionViewCell {
             titleLabel.text = data.title
             dateLabel.text = data.publishedAt
             contentLabel.text = data.description
+            
+            if let chk = data.readCheck {
+                if chk {
+                    titleLabel.textColor = .red
+                } else {
+                    titleLabel.textColor = .black
+                }
+            }
         } else if let localData = newsData as? LocalNewsItem {
             let chkImg = ToolManager().imgUrlCheck(urlString: localData.urlToImage)
             if chkImg.status {
