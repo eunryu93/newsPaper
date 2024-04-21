@@ -34,7 +34,27 @@ class NewsViewModel: CallDelegate {
     }
     
     func getLocalData() {
-        let localData = DataManager().readLocalNewsData()
+        var localData = DataManager().readLocalNewsData()
+        
+        // 읽은 것 확인
+        let readTitles = DataManager().getReadTitles()
+        if readTitles.count > 0 {
+            for cnt in 0...(localData.count - 1) {
+                let it = localData[cnt]
+                it.readCheck = false
+                
+                for title in readTitles {
+                    if title.elementsEqual(it.title) {
+                        it.readCheck = true
+                        break
+                    }
+                }
+                
+                localData[cnt] = it
+            }
+        }
+        
+        
         self.showNewsArray.onNext(localData)
     }
     
