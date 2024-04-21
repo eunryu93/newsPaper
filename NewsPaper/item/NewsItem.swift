@@ -18,12 +18,12 @@ struct NewsItem: Codable {
 }
 
 class LocalNewsItem: Object {
-    @Persisted var title: String
-    @Persisted var author: String?
-    @Persisted var desc: String?
-    @Persisted var publishedAt: String?
-    @Persisted var url: String?
-    @Persisted var urlToImage: String?
+    @objc dynamic var title: String = ""
+    @objc dynamic var author: String?
+    @objc dynamic var desc: String?
+    @objc dynamic var publishedAt: String?
+    @objc dynamic var url: String?
+    @objc dynamic var urlToImage: String?
     
     convenience init(data: NewsItem) {
         self.init()

@@ -46,8 +46,26 @@ class NewsInfoCell: UICollectionViewCell {
             titleLabel.text = data.title
             dateLabel.text = data.publishedAt
             contentLabel.text = data.description
-        } else {
+        } else if let localData = newsData as? LocalNewsItem {
+            let chkImg = ToolManager().imgUrlCheck(urlString: localData.urlToImage)
+            if chkImg.status {
+                titleImageV.setNewsImg(with: localData.urlToImage)
+                
+                if chkVertical {
+                    imgWidth.constant = 300
+                    imgHeight.constant = 150
+                } else {
+                    imgWidth.constant = width
+                    imgHeight.constant = width / 2
+                }
+            } else {
+                imgHeight.constant = 0
+                imgTerms.constant = 0
+            }
             
+            titleLabel.text = localData.title
+            dateLabel.text = localData.publishedAt
+            contentLabel.text = localData.desc
         }
     }
 }

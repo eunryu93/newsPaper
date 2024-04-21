@@ -3,10 +3,26 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in MainView.initModel():MainView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "newsArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "NewsCell.initCell(info:):NewsCell.swift">
          <PersistentStrings>
             <PersistentString
                value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DataManager.readLocalNewsData():DataManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "getRmData.isEmpty">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

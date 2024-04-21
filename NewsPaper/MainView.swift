@@ -39,7 +39,15 @@ class MainView: BaseView, UICollectionViewDelegate, UICollectionViewDataSource, 
                 }
             }
         }.disposed(by: newsBag)
-        newsVM!.callNewsApi()
+        
+        // 비어있을때 또는 로컬데이터 가지고 있는 경우, 네트워크가 연결된 경우라면 호출
+        if newsArray.count == 0 {
+            newsVM!.getNewsData()
+        } else {
+            if newsArray[0] as? LocalNewsItem != nil && NetworkCheck.shared.isConnected {
+                newsVM!.getNewsData()
+            }
+        }
     }
     
     /** orientation */
@@ -108,10 +116,24 @@ class MainView: BaseView, UICollectionViewDelegate, UICollectionViewDataSource, 
                 } else {
                     height = 130
                 }
+            } else if let localData = data as? LocalNewsItem {
+                let chkImg = ToolManager().imgUrlCheck(urlString: localData.urlToImage)
+                if chkImg.status {
+                    height = 290
+                } else {
+                    height = 130
+                }
             }
         } else {
             if let data = data as? NewsItem {
                 let chkImg = ToolManager().imgUrlCheck(urlString: data.urlToImage)
+                if chkImg.status {
+                    height = (width / 2) + 140
+                } else {
+                    height = 140
+                }
+            } else if let localData = data as? LocalNewsItem {
+                let chkImg = ToolManager().imgUrlCheck(urlString: localData.urlToImage)
                 if chkImg.status {
                     height = (width / 2) + 140
                 } else {

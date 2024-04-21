@@ -22,6 +22,10 @@ class BaseView: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        LogManager.basicLog(type: .httpCall, content: "Check Orientation : \(UIDevice.current.orientation.isPortrait)")
+        LogManager.basicLog(type: .httpCall, content: "Check Orientation : \(UIDevice.current.orientation.isLandscape)")
+        
         self.initModel()
     }
     

@@ -9,19 +9,25 @@ import UIKit
 import RealmSwift
 
 class DataManager {
-    private var realmObjcect: Realm?
+    private var realmObject: Realm?
     
     init() {
         do {
-            realmObjcect = try Realm()
+            let config = Realm.Configuration(
+                schemaVersion: 1,
+                migrationBlock: nil,
+                deleteRealmIfMigrationNeeded: true
+            )
+            
+            realmObject = try Realm(configuration: config)
         } catch {
-            realmObjcect = nil
+            realmObject = nil
         }
     }
     
     func readLocalNewsData() -> [LocalNewsItem] {
         var localData: [LocalNewsItem] = []
-        if let rm = realmObjcect {
+        if let rm = realmObject {
             let getRmData = rm.objects(LocalNewsItem.self)
             if !getRmData.isEmpty {
                 for item in getRmData {
@@ -34,23 +40,27 @@ class DataManager {
     }
     
     func setNewsData(newsDatas: [NewsItem]) {
-        if self.readLocalNewsData().isEmpty {
-            LogManager.basicLog(type: .httpCall, content: "데이터 없어서 저장함!")
-            for newsData in newsDatas {
-                let inputData = LocalNewsItem(data: newsData)
+        if let rm = realmObject {
+            do {
+                if self.readLocalNewsData().count > 0 {
+                    // 전체 삭제
+                    try rm.write {
+                        rm.deleteAll()
+                    }
+                }
                 
-                if let rm = realmObjcect {
-                    do {
+                for newsData in newsDatas {
+                    let inputData = LocalNewsItem(data: newsData)
+                    
+                    if let rm = realmObject {
                         try rm.write {
                             rm.add(inputData)
                         }
-                    } catch {
-                        
                     }
                 }
+            } catch {
+                
             }
-        } else {
-            LogManager.basicLog(type: .httpCall, content: "데이터 있어서 저장안함!")
         }
     }
 }
