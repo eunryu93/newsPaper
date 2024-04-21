@@ -20,6 +20,11 @@ class BaseView: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.initModel()
+    }
+    
     /** open function */
     func initView() {
         
