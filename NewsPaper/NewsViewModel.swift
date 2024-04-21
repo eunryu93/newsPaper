@@ -10,6 +10,7 @@ import RxSwift
 
 class NewsViewModel: CallDelegate {
     
+    var showNewsArray: PublishSubject<[Any]> = PublishSubject()
     private var client: CallManager?
     
     func callNewsApi() {
@@ -30,9 +31,12 @@ class NewsViewModel: CallDelegate {
         self.client = nil
         
         if ToolManager().checkHttpResult(status: info.status) {
-            LogManager.basicLog(type: .httpCall, content: "OK !")
-            LogManager.basicLog(type: .httpCall, content: info.articles?.count)
-            LogManager.basicLog(type: .httpCall, content: info.totalResults)
+            var array: [NewsItem] = []
+            if let articles = info.articles {
+                array = articles
+            }
+            
+            self.showNewsArray.onNext(array)
         } else {
             LogManager.basicLog(type: .httpCall, content: "NO !")
             LogManager.basicLog(type: .httpCall, content: info.code)
